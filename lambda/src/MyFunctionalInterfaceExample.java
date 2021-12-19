@@ -2,19 +2,27 @@ public class MyFunctionalInterfaceExample {
     public static void main(String[] args) {
         MyFunctionalInterface fi;
 
-        fi = (x) -> { // 람다식에 매개변수가 없는 이유는 method()가 매개변수를 갖지 않기 때문
-            int result = x * 5;
-            System.out.println(result);
+        fi = (x, y) -> {
+            int result = x + y;
+            return result;
         };
-        fi.method(2); // 이 호출로 람다식의 중괄호를 실행시킴
+        System.out.println(fi.method(2, 5)); // 이 호출로 람다식의 중괄호를 실행시킴
 
-        fi = (x) -> {
-            System.out.println(x * 5);
+        fi = (x, y) -> {
+            return x + y;
         };
-        fi.method(2);
+        System.out.println(fi.method(2, 5));
 
-        fi = x -> System.out.println(x * 5);
+        fi = (x, y) -> x + y;
+        System.out.println(fi.method(2, 5));
 
-        fi.method(2);
+        fi = (x, y) -> sum(x, y);
+        System.out.println(fi.method(2, 5));
+
+
+    }
+
+    private static int sum(int x, int y) {
+        return (x + y);
     }
 }
