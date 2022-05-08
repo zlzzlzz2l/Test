@@ -1,12 +1,8 @@
 package com.example.reflection;
 
-import java.io.Serializable;
-
 public class Person {
-    private String name;
-    private String phoneNumber;
-    private Gender gender;
-    private int age;
+    private String name = "kim";
+    private int age = 0;
 
     public String getName() {
         return name;
@@ -14,22 +10,6 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 
     public int getAge() {
@@ -44,8 +24,6 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", gender=" + gender +
                 ", age=" + age +
                 '}';
     }
