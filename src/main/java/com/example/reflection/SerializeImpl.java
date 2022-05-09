@@ -6,16 +6,17 @@ import java.util.Map;
 
 public class SerializeImpl implements Serialize {
 
-    StringBuilder jsonValue = new StringBuilder();
+    StringBuilder json = new StringBuilder();
 
     @Override
-    public void jsonSerialize(Person person) {
+    public StringBuilder jsonSerialize(Person person) throws ClassNotFoundException {
 
-        Field[] allFields = Person.class.getDeclaredFields();
+        Class<?> pClass = Class.forName("com.example.reflection.Person");
+        Field[] allPersonFields = pClass.getDeclaredFields();
 
-        jsonValue.append("{");
-        Map<String, Object> result = new HashMap<>();
-        for (Field field : allFields) {
+        json.append("{");
+
+        for (Field field : allPersonFields) {
             String key = field.getName();
             Object value = null;
             field.setAccessible(true);
@@ -26,26 +27,26 @@ public class SerializeImpl implements Serialize {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            jsonValue.append(", ");
+            json.append(", ");
         }
-        jsonValue.deleteCharAt(jsonValue.length()-1);
-        jsonValue.deleteCharAt(jsonValue.length()-1);
-        jsonValue.append("}");
-        System.out.println(jsonValue);
+        json.deleteCharAt(json.length()-1);
+        json.deleteCharAt(json.length()-1);
+        json.append("}");
+        return json;
     }
 
     @Override
     public void jsonParser(String key, Object value, Class<?> type) {
-        jsonValue.append("\"");
-        jsonValue.append(key);
-        jsonValue.append("\"");
-        jsonValue.append(": ");
+        json.append("\"");
+        json.append(key);
+        json.append("\"");
+        json.append(": ");
         if (type.equals(Integer.TYPE)) {
-            jsonValue.append(value);
+            json.append(value);
         } else {
-            jsonValue.append("\"");
-            jsonValue.append(value);
-            jsonValue.append("\"");
+            json.append("\"");
+            json.append(value);
+            json.append("\"");
         }
     }
 }

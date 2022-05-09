@@ -1,8 +1,8 @@
 package com.example.reflection;
 
 public class Person {
-    private String name = "kim";
-    private int age = 0;
+    private String name;
+    private int age;
 
     public String getName() {
         return name;
