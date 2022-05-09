@@ -1,8 +1,6 @@
 package com.example.reflection;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SerializeImpl implements Serialize {
 
@@ -23,6 +21,7 @@ public class SerializeImpl implements Serialize {
             try {
                 value = field.get(person);
                 Class<?> type = field.getType();
+                // 객체의 이름과 값을 JSON으로 변경하기 위해 jsonParser 메서드 호출
                 jsonParser(key, value, type);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -41,6 +40,8 @@ public class SerializeImpl implements Serialize {
         json.append(key);
         json.append("\"");
         json.append(": ");
+        // 객체 타입별로 조건 생성
+        // 들어올 수 있는 데이터 타입을 String과 int로 제한했기 때문에 조건은 아래와 같다.
         if (type.equals(Integer.TYPE)) {
             json.append(value);
         } else {
