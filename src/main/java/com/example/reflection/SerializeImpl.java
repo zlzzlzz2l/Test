@@ -7,7 +7,7 @@ public class SerializeImpl implements Serialize {
     StringBuilder json = new StringBuilder();
 
     @Override
-    public StringBuilder jsonSerialize(Person person) throws ClassNotFoundException {
+    public StringBuilder jsonSerialize(Object person) throws ClassNotFoundException {
 
         Class<?> pClass = Class.forName("com.example.reflection.Person");
         Field[] allPersonFields = pClass.getDeclaredFields();
