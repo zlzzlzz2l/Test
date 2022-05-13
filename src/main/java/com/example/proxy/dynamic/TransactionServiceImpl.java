@@ -1,17 +1,15 @@
 package com.example.proxy.dynamic;
 
-public class TransactionServiceImpl implements TransactionService{
+public class TransactionServiceImpl implements TransactionService {
 
     @Override
-    public boolean startTransactionMethodOne() {
+    public void startTransactionMethodOne() {
         System.out.println("Transaction Active 1");
-        return true;
     }
 
     @Override
-    public boolean startTransactionMethodTwo() {
+    public void startTransactionMethodTwo() {
         System.out.println("Transaction Active 2");
-        return false;
     }
 
 }
